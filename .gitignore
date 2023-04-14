@@ -1,4 +1,8 @@
 data/
+logs/
+*.pth
+*.pt
+*.ckpt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

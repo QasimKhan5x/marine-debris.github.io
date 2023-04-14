@@ -9,13 +9,7 @@ Description: unet.py Unet model for pixel-level semantic segmentation.
 '''
 
 import torch
-import numpy as np
 from torch import nn
-import random
-
-random.seed(0)
-np.random.seed(0)
-torch.manual_seed(0)
 
 class Down(nn.Module):
     # Contracting Layer

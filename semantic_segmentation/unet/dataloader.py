@@ -40,13 +40,13 @@ class GenDEBRIS(Dataset): # Extend PyTorch's Dataset class
     def __init__(self, mode = 'train', transform=None, standardization=None, path = dataset_path, agg_to_water= True):
         
         if mode=='train':
-            self.ROIs = np.genfromtxt(os.path.join(path, 'splits', 'train_X.txt'),dtype='str')
+            self.ROIs = np.genfromtxt(os.path.join(path, 'splits', 'train_X.txt'), dtype='str')
                 
         elif mode=='test':
-            self.ROIs = np.genfromtxt(os.path.join(path, 'splits', 'test_X.txt'),dtype='str')
+            self.ROIs = np.genfromtxt(os.path.join(path, 'splits', 'test_X.txt'), dtype='str')
                 
         elif mode=='val':
-            self.ROIs = np.genfromtxt(os.path.join(path, 'splits', 'val_X.txt'),dtype='str')
+            self.ROIs = np.genfromtxt(os.path.join(path, 'splits', 'val_X.txt'), dtype='str')
             
         else:
             raise
