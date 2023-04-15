@@ -12,7 +12,8 @@ import torch
 import random
 import numpy as np
 from tqdm import tqdm
-from osgeo import gdal
+# from osgeo import gdal
+import rasterio as rio
 from os.path import dirname as up
 from torch.utils.data import Dataset
 import torchvision.transforms.functional as F
@@ -63,8 +64,10 @@ class GenDEBRIS(Dataset): # Extend PyTorch's Dataset class
             roi_file_cl = os.path.join(path, 'patches', roi_folder,roi_name + '_cl.tif') # Get Class Mask
             
             # Load Classsification Mask
-            ds = gdal.Open(roi_file_cl)
-            temp = np.copy(ds.ReadAsArray().astype(np.int64))
+            # ds = gdal.Open(roi_file_cl)
+            # temp = np.copy(ds.ReadAsArray().astype(np.int64))
+            ds = rio.open(roi_file_cl)
+            temp = np.copy(ds.read().astype(np.int64))
             
             # Aggregation
             if agg_to_water:
@@ -80,8 +83,10 @@ class GenDEBRIS(Dataset): # Extend PyTorch's Dataset class
             self.y.append(temp)
             
             # Load Patch
-            ds = gdal.Open(roi_file)
-            temp = np.copy(ds.ReadAsArray())
+            # ds = gdal.Open(roi_file)
+            # temp = np.copy(ds.ReadAsArray())
+            ds = rio.open(roi_file)
+            temp = np.copy(ds.read())
             ds=None
             self.X.append(temp)          
 
